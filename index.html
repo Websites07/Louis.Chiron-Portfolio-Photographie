@@ -1,32 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio Créatif</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Louis — Photographie</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue:  #2c3e50;
-      --cream: #f7f4ef;
-      --white: #ffffff;
-      --muted: #8a9aaa;
-      --rule:  rgba(44,62,80,0.11);
+      --noir:  #111111;
+      --blanc: #ffffff;
+      --soft:  #f2f2f2;
+      --muted: #9a9a9a;
+      --rule:  rgba(17,17,17,0.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--white);
-      color: var(--blue);
-      font-family: 'Jost', sans-serif;
+      background: var(--blanc);
+      color: var(--noir);
+      font-family: 'Montserrat', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
       -webkit-user-select: none;
       user-select: none;
     }
+
+    /* ══ MARQUE FIXE (Instagram + logo) ══ */
+    .brand-fixed {
+      position: fixed; top: 26px; left: 36px; z-index: 600;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .instagram-link { display: flex; align-items: center; transition: opacity 0.25s ease; }
+    .instagram-link:hover { opacity: 0.55; }
+    .instagram-link svg { width: 22px; height: 22px; display: block; }
+
+    .site-logo {
+      font-family: 'Poppins', sans-serif; font-weight: 500;
+      font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--noir); text-decoration: none; transition: color 0.3s;
+    }
+    body.menu-open .site-logo { color: var(--blanc); }
 
     /* ══ BURGER ══ */
     .burger-btn {
@@ -37,18 +57,17 @@
     }
     .burger-box { width: 28px; display: flex; flex-direction: column; gap: 6px; }
     .burger-box span {
-      display: block; height: 1.5px; background: var(--blue);
+      display: block; height: 1.5px; width: 100%; background: var(--noir);
       transition: all 0.4s cubic-bezier(0.76,0,0.24,1); transform-origin: center;
     }
-    .burger-box span:nth-child(2) { width: 70%; margin-left: auto; }
     body.menu-open .burger-box span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
     body.menu-open .burger-box span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     body.menu-open .burger-box span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
-    body.menu-open .burger-box span { background: var(--cream); }
+    body.menu-open .burger-box span { background: var(--blanc); }
 
     /* ══ MENU PLEIN ÉCRAN ══ */
     .fullmenu {
-      position: fixed; inset: 0; background: var(--blue); z-index: 500;
+      position: fixed; inset: 0; background: var(--noir); z-index: 500;
       display: flex; align-items: center; padding: 80px 10vw;
       clip-path: circle(0% at calc(100% - 60px) 52px);
       transition: clip-path 0.75s cubic-bezier(0.76,0,0.24,1);
@@ -59,13 +78,14 @@
     .menu-nav li { overflow: hidden; }
     .menu-nav a {
       display: block;
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      font-size: clamp(44px, 7vw, 88px); line-height: 1.05;
-      color: var(--cream); text-decoration: none; letter-spacing: -1px;
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      font-size: clamp(38px, 6.5vw, 78px); line-height: 1.08;
+      color: var(--blanc); text-decoration: none;
       transform: translateY(110%);
       transition: transform 0.7s cubic-bezier(0.76,0,0.24,1), color 0.2s;
     }
-    .menu-nav a:hover { color: rgba(247,244,239,0.38); }
+    .menu-nav a:hover { color: rgba(255,255,255,0.4); }
     body.menu-open .menu-nav li:nth-child(1) a { transform: translateY(0); transition-delay: 0.14s; }
     body.menu-open .menu-nav li:nth-child(2) a { transform: translateY(0); transition-delay: 0.20s; }
     body.menu-open .menu-nav li:nth-child(3) a { transform: translateY(0); transition-delay: 0.26s; }
@@ -78,23 +98,14 @@
       opacity: 0; transition: opacity 0.4s 0.55s;
     }
     body.menu-open .menu-footer { opacity: 1; }
-    .menu-email { font-size: 13px; color: rgba(247,244,239,0.35); letter-spacing: 0.06em; }
+    .menu-email { font-size: 13px; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; }
     .menu-socials { display: flex; gap: 24px; }
     .menu-socials a {
-      font-size: 11px; color: rgba(247,244,239,0.3);
+      font-size: 11px; color: rgba(255,255,255,0.3);
       text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase;
       transition: color 0.2s;
     }
-    .menu-socials a:hover { color: var(--cream); }
-
-    /* ══ LOGO ══ */
-    .site-logo {
-      position: fixed; top: 30px; left: 36px; z-index: 600;
-      font-family: 'Cormorant Garamond', serif; font-weight: 600;
-      font-size: 20px; letter-spacing: 0.04em;
-      color: var(--blue); text-decoration: none; transition: color 0.3s;
-    }
-    body.menu-open .site-logo { color: var(--cream); }
+    .menu-socials a:hover { color: var(--blanc); }
 
     /* ══ PAGE HEADER ══ */
     .page-header {
@@ -111,18 +122,19 @@
     }
     .header-eyebrow::before { content:''; width: 24px; height: 1px; background: var(--muted); }
     .page-title {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      font-size: clamp(44px, 6vw, 80px); line-height: 0.95; letter-spacing: -2px;
-      color: var(--blue);
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.02em;
+      font-size: clamp(40px, 6vw, 76px); line-height: 0.98;
+      color: var(--noir);
       opacity: 0; animation: up 0.9s 0.2s forwards;
     }
-    .page-title em { font-style: italic; color: var(--muted); }
+    .page-title em { font-style: normal; font-weight: 300; color: var(--muted); }
     .header-right {
       text-align: right;
       opacity: 0; animation: up 0.9s 0.35s forwards;
     }
     .header-name {
-      font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 400;
+      font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 400;
       color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase;
       margin-bottom: 4px;
     }
@@ -131,7 +143,7 @@
     /* ══ NAV STICKY ══ */
     .cat-nav {
       position: sticky; top: 0; z-index: 100;
-      background: var(--white); border-bottom: 1px solid var(--rule);
+      background: var(--blanc); border-bottom: 1px solid var(--rule);
       padding: 0 40px; display: flex; overflow-x: auto; scrollbar-width: none;
       opacity: 0; animation: up 0.7s 0.45s forwards;
     }
@@ -139,19 +151,19 @@
     .cat-tab {
       flex-shrink: 0; padding: 15px 20px;
       border: none; border-bottom: 2px solid transparent;
-      background: none; font-family: 'Jost', sans-serif;
-      font-size: 11px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+      background: none; font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--muted); cursor: pointer;
       transition: color 0.2s, border-color 0.2s; text-decoration: none;
       display: flex; align-items: center; gap: 7px;
     }
-    .cat-tab:hover { color: var(--blue); }
-    .cat-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .cat-tab:hover { color: var(--noir); }
+    .cat-tab.active { color: var(--noir); border-bottom-color: var(--noir); }
     .cat-tab .cnt {
-      font-size: 9px; background: var(--cream); color: var(--muted);
+      font-size: 9px; background: var(--soft); color: var(--muted);
       padding: 2px 6px; border-radius: 20px;
     }
-    .cat-tab.active .cnt { background: var(--blue); color: var(--cream); }
+    .cat-tab.active .cnt { background: var(--noir); color: var(--blanc); }
 
     /* ══ SECTION CATÉGORIE ══ */
     .cat-section { padding: 56px 40px 0; }
@@ -164,12 +176,12 @@
     }
     .cat-title {
       display: flex; align-items: center; gap: 12px;
-      font-family: 'Cormorant Garamond', serif; font-weight: 400;
-      font-size: 28px; letter-spacing: -0.5px; color: var(--blue);
+      font-family: 'Montserrat', sans-serif; font-weight: 600;
+      font-size: 26px; letter-spacing: -0.2px; color: var(--noir);
     }
     .cat-icon { font-size: 20px; }
     .cat-badge {
-      font-size: 10px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--muted); padding: 5px 12px; border: 1px solid var(--rule);
     }
 
@@ -185,16 +197,14 @@
       position: relative;
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: #d8dde2;
+      background: var(--soft);
       cursor: pointer;
     }
-    /* Couche de protection par-dessus */
     .photo-card::after {
       content: '';
       position: absolute; inset: 0; z-index: 10;
       -webkit-user-drag: none;
     }
-    /* Image en background CSS — non draggable, src dissimulé */
     .photo-bg {
       position: absolute; inset: 0;
       background-size: cover;
@@ -208,10 +218,9 @@
       transform: scale(1.06);
       filter: saturate(1.05) brightness(1.02);
     }
-    /* Overlay */
     .photo-overlay {
       position: absolute; inset: 0; z-index: 5;
-      background: linear-gradient(to top, rgba(26,37,48,0.78) 0%, transparent 48%);
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 48%);
       opacity: 0; transition: opacity 0.3s;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 16px 14px; pointer-events: none;
@@ -223,29 +232,29 @@
     }
     .photo-card:hover .photo-meta { transform: none; opacity: 1; }
     .photo-num {
-      font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4);
+      font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.55);
       margin-bottom: 3px;
     }
 
     /* ══ SECTION PARTENAIRES ══ */
     .partners-section {
-      background: var(--blue); padding: 72px 40px; margin-top: 56px;
+      background: var(--noir); padding: 72px 40px; margin-top: 56px;
     }
     .partners-header { margin-bottom: 12px; }
     .partners-eyebrow {
       font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-      color: rgba(247,244,239,0.3); margin-bottom: 14px;
+      color: rgba(255,255,255,0.3); margin-bottom: 14px;
       display: flex; align-items: center; gap: 12px;
     }
     .partners-eyebrow::before { content:''; width: 22px; height: 1px; background: currentColor; display:block; }
     .partners-title {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      font-size: clamp(36px, 4.5vw, 56px); letter-spacing: -1.5px; line-height: 1;
-      color: var(--cream); margin-bottom: 12px;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: clamp(32px, 4.2vw, 50px); letter-spacing: -0.5px; line-height: 1.05;
+      color: var(--blanc); margin-bottom: 12px;
     }
-    .partners-title em { font-style: italic; color: rgba(247,244,239,0.32); }
+    .partners-title em { font-style: normal; color: rgba(255,255,255,0.35); }
     .partners-intro {
-      font-size: 13px; color: rgba(247,244,239,0.45);
+      font-size: 13px; color: rgba(255,255,255,0.45);
       letter-spacing: 0.05em; line-height: 1.8;
       max-width: 600px; margin-bottom: 48px;
     }
@@ -254,7 +263,7 @@
     }
     .partner-card {
       position: relative; overflow: hidden;
-      aspect-ratio: 3/4; background: rgba(247,244,239,0.06);
+      aspect-ratio: 3/4; background: rgba(255,255,255,0.06);
     }
     .partner-card::after {
       content: ''; position: absolute; inset: 0; z-index: 10;
@@ -274,19 +283,19 @@
     }
     .partner-caption {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 6;
-      background: linear-gradient(to top, rgba(26,37,48,0.85) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%);
       padding: 28px 16px 14px;
       opacity: 0; transition: opacity 0.3s;
     }
     .partner-card:hover .partner-caption { opacity: 1; }
     .partner-caption span {
-      font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300;
+      font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 400;
       color: #fff; letter-spacing: 0.02em;
     }
 
-    /* ══ FOOTER ══ */
+    /* ══ FOOTER (conservé, non utilisé dans le HTML source) ══ */
     footer {
-      background: #1a252f; border-top: 1px solid rgba(247,244,239,0.06);
+      background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; display: flex; flex-direction: column;
       align-items: center; gap: 16px;
     }
@@ -295,9 +304,8 @@
       filter: brightness(0) invert(1);
       -webkit-user-drag: none; pointer-events: none;
     }
-    .footer-copy { font-size: 11px; color: rgba(247,244,239,0.28); letter-spacing: 0.1em; text-align: center; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; text-align: center; }
 
-    /* Watermark print */
     @media print {
       .photo-bg, .partner-bg { background-image: none !important; background-color: #ccc !important; }
     }
@@ -315,17 +323,27 @@
       .partners-grid { grid-template-columns: repeat(3,1fr); }
       footer { padding: 24px 20px; }
       .burger-btn { right: 16px; }
-      .site-logo { left: 16px; }
+      .brand-fixed { left: 16px; }
     }
     @media (max-width: 560px) {
       .photo-grid { grid-template-columns: repeat(2,1fr); }
       .partners-grid { grid-template-columns: repeat(2,1fr); }
     }
-  </style>
+</style>
 </head>
 <body>
 
-<a href="https://chiron-site.github.io/Portfolio-accueil-Louis-Chiron/" class="site-logo">LC.</a>
+<div class="brand-fixed">
+  <!-- 🔧 Remplacez href="#" par le lien de votre profil Instagram -->
+  <a href="#" class="instagram-link" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="6" stroke="#111111" stroke-width="1.7"/>
+      <circle cx="12" cy="12" r="5" stroke="#111111" stroke-width="1.7"/>
+      <circle cx="17.4" cy="6.6" r="1.25" fill="#111111"/>
+    </svg>
+  </a>
+  <a href="https://chiron-site.github.io/Portfolio-accueil-Louis-Chiron/" class="site-logo">LC.</a>
+</div>
 
 <button class="burger-btn" id="burgerBtn" aria-label="Menu">
   <div class="burger-box"><span></span><span></span><span></span></div>
@@ -342,7 +360,7 @@
     </ul>
   </div>
   <div class="menu-footer">
-  
+
     <div class="menu-socials">
 
     </div>
@@ -363,15 +381,13 @@
 
 <!-- NAV STICKY -->
 <nav class="cat-nav">
-  <a href="#rue"       class="cat-tab active" data-target="rue">Rue <span class="cnt">9</span></a>
-  <a href="#militaire" class="cat-tab" data-target="militaire">Militaire <span class="cnt">6</span></a>
-  <a href="#sport"     class="cat-tab" data-target="sport">Sport <span class="cnt">18</span></a>
-  <a href="#montagne"  class="cat-tab" data-target="montagne">Montagne <span class="cnt">6</span></a>
-  <a href="#animaux"   class="cat-tab" data-target="animaux">Animaux <span class="cnt">6</span></a>
-  <a href="#confiance" class="cat-tab" data-target="confiance">Ils m'ont fait confiance</a>
+  <a href="https://websites07.github.io/Portfolio-photographie/#rue" class="cat-tab active" data-target="rue">Rue <span class="cnt">9</span></a>
+  <a href="https://websites07.github.io/Portfolio-photographie/#militaire" class="cat-tab" data-target="militaire">Militaire <span class="cnt">6</span></a>
+  <a href="https://websites07.github.io/Portfolio-photographie/#sport" class="cat-tab" data-target="sport">Sport <span class="cnt">18</span></a>
+  <a href="https://websites07.github.io/Portfolio-photographie/#montagne" class="cat-tab" data-target="montagne">Montagne <span class="cnt">6</span></a>
+  <a href="https://websites07.github.io/Portfolio-photographie/#animaux" class="cat-tab" data-target="animaux">Animaux <span class="cnt">6</span></a>
+  <a href="https://websites07.github.io/Portfolio-photographie/#confiance" class="cat-tab" data-target="confiance">Ils m'ont fait confiance</a>
 </nav>
-
-
 
 
 <!-- ══════════ RUE ══════════ -->
@@ -778,5 +794,6 @@
     });
   }, 1000);
 </script>
+
 </body>
 </html>
