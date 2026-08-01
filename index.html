@@ -139,7 +139,9 @@
       color: var(--noir);
       opacity: 0; animation: up 0.9s 0.2s forwards;
     }
-    .page-title em { font-style: normal; font-weight: 300; color: var(--muted); }
+    .page-title .title-accent {
+      color: #b45015;
+    }
     .header-right {
       text-align: right;
       opacity: 0; animation: up 0.9s 0.35s forwards;
@@ -304,7 +306,7 @@
       color: #fff; letter-spacing: 0.02em;
     }
 
-   
+    /* ══ FOOTER (conservé, non utilisé dans le HTML source) ══ */
     footer {
       background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; display: flex; flex-direction: column;
@@ -365,7 +367,7 @@
   <ul>
       <li><a href="https://websites07.github.io/Louis.Chiron-Portfolio-Accueil/" class="nav-link" target="_self">Accueil</a></li>
       <li><a href="https://websites07.github.io/Portfolio-photographie/" class="nav-link" target="_self">Photographie</a></li>
-      <li><a href="https://websites07.github.io/Louis.Chiron-Portfolio-Web/" class="nav-link" target="_self">Sites Web</a></li>
+      <li><a href="https://websites07.github.io/Portfolio-web/" class="nav-link" target="_self">Sites Web</a></li>
       <li><a href="https://websites07.github.io/Louis.Chiron-Portfolio-Contact/" class="nav-link" target="_self">Contact</a></li>
   </ul>
 </nav>
@@ -374,7 +376,7 @@
 <header class="page-header">
   <div>
     <div class="header-eyebrow">Galerie photographique</div>
-    <h1 class="page-title">Mes<br><em>Photographies.</em></h1>
+    <h1 class="page-title"><span class="title-accent">Mes</span><br><em>Photographies.</em></h1>
   </div>
   <div class="header-right">
 
@@ -788,14 +790,6 @@
     c.addEventListener('dragstart', e => e.preventDefault());
   });
 
-  /* ── DevTools blur ── */
-  setInterval(() => {
-    const open = window.outerWidth - window.innerWidth > 160 ||
-                 window.outerHeight - window.innerHeight > 160;
-    document.querySelectorAll('.photo-bg,.partner-bg').forEach(el => {
-      el.style.filter = open ? 'blur(18px) brightness(0.3)' : '';
-    });
-  }, 1000);
 </script>
 
 </body>
